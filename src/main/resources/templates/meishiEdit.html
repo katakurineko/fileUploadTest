@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta
+	name="viewport"
+	content="width=device-width,initial-scale=1.0"
+/>
+<link
+	href="css/bootstrap.min.css"
+	rel="stylesheet"
+/>
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="style.css"
+>
+<title>名刺編集</title>
+<script src="js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	<!-- ヘッダー開始 -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<button
+			type="button"
+			class="navbar-toggler"
+			data-toggle="collapse"
+			data-target="#navbarNavDropdown"
+			aria-controls="navbarNavDropdown"
+			aria-expanded="false"
+			aria-label="ナビゲーションの切替"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a
+			class="navbar-brand mb-0"
+			style="background-color: #505050; padding-left: 5px; padding-right: 5px;"
+			href="BC_list.html"
+		>
+			<img
+				src="Picture/header/BusinessCard.png"
+				width="30"
+				height="30"
+				class="d-inline-block align-top"
+				alt=""
+			>
+			名刺管理システム
+		</a>
+		<div
+			class="collapse navbar-collapse"
+			id="navbarNavDropdown"
+		>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a
+						class="nav-link"
+						href="BC_list.html"
+					>名刺一覧</a>
+				</li>
+				<li class="nav-item">
+					<a
+						class="nav-link"
+						href="user_list.html"
+					>ユーザ一覧</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item dropdown">
+					<a
+						href="#"
+						class="nav-link dropdown-toggle"
+						role="button"
+						data-toggle="dropdown"
+						id="navbarDropdownMenuLink"
+						aria-haspopup="true"
+						aria-expanded="false"
+					>ユーザ名</a>
+					<div
+						class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="navbarDropdownMenuLink"
+					>
+						<a
+							class="dropdown-item"
+							href="user_edit.html"
+						>
+							<img
+								src="Picture/header/mypage.png"
+								width="30"
+								height="30"
+								class="d-inline-block align-top"
+								alt=""
+							>
+							ユーザ編集
+						</a>
+						<a
+							class="dropdown-item"
+							href="logout.html"
+						>
+							<img
+								src="Picture/header/logout.png"
+								width="30"
+								height="30"
+								class="d-inline-block align-top"
+								alt=""
+							>
+							ログアウト
+						</a>
+					</div>
+					<!-- ./dropdown-menu -->
+				</li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</nav>
+	<!-- ヘッダー終了 -->
+	<div
+		class="container"
+		style="white-space: nowrap;"
+	>
+		<h1 style="padding: 30px;">名刺編集</h1>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="col-12 col-lg-2 col-form-label"
+			>名前</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=野口笑子
+				>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="col-12 col-lg-2 col-form-label"
+			> よみがな</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=のぐちえみこ
+				>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="field col-12 col-lg-2 col-form-label"
+			>電話番号</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=000-0000-0000
+				>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="field col-12 col-lg-2 col-form-label"
+			>メールアドレス</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=kukukuwarai0909@maru.jp
+				>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="field col-12 col-lg-2 col-form-label"
+			>会社名</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=FUJI-3
+				>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="field col-12 col-lg-2 col-form-label"
+			>役職</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=部長
+				>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="field col-12 col-lg-2 col-form-label"
+			>部署名</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=お笑い研究会
+				>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="field col-12 col-lg-2 col-form-label"
+			>住所</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=静岡県清水市入江1-1-1
+				>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label
+				for="example-text-input"
+				class="field col-12 col-lg-2 col-form-label"
+			>ホームページ</label>
+			<div class="col-12 col-lg-10">
+				<input
+					class="form-control"
+					type="text"
+					value=https://owarai/warai/rai
+				>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">備考欄</div>
+		</div>
+		<div
+			class="row"
+			style="height: 350px"
+		>
+			<textarea
+				class="col-md-12 form-control"
+				name="example"
+				cols="50"
+				style="height: 100%;"
+			>面白い話をすると気に入られる</textarea>
+		</div>
+		<div
+			class="row"
+			style="margin: 30px;"
+		>
+			<div class="col-0 col-lg-6"></div>
+			<div class="col-12 col-lg-2">
+				<input
+					style="width: 100%; background-color: #d3d3d3;"
+					type="button"
+					class="btn btn-default"
+					name="delete"
+					value="編集中止"
+					onclick="location.href='BC_list.html' "
+				/>
+			</div>
+			<div class="col-12 d-lg-none">　</div>
+			<div class="col-12 col-lg-2">
+				<input
+					type="submit"
+					style="width: 100%"
+					class="btn btn-primary"
+					name="edit"
+					value="保存"
+					onclick="location.href='BC_edit_comp.html';window.onbeforeunload=null"
+				/>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onbeforeunload = function(e) {
+			return 'このページから離れますか？';
+		};
+	</script>
+	<!-- Optional JavaScript -->
+	<!-- bootstrap , jQuery , Popper.js , Bootstrap JS -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"
+	></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"
+	></script>
+<!-- <script>
+	$(document).ready(function() {
+		alert("既に変更されていたため、変更に失敗しました。");
+	});
+</script>
+ --></body>
+</html>

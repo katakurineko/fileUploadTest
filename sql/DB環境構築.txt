@@ -1,0 +1,10 @@
+﻿username:root password:pass
+
+MYSQL Workbenchなどでteamc.sqlを読み込み上から順に実行
+
+管理者ユーザー　ログインID:kanri パスワード:pass
+一般ユーザー	ログインID:ippan パスワード:pass
+
+
+
+名刺一覧表示用　meishiList.sqlを上から順に実行

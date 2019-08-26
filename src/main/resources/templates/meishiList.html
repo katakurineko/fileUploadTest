@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1.0"
+    />
+    <!-- Bootstrap -->
+    <link
+        href="css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+    <title>名刺一覧</title>
+    <LINK
+        rel="stylesheet"
+        href="css/main.css"
+        type="text/css"
+    >
+</head>
+
+<body>
+    <div th:insert="header"></div>
+    <div
+        class="container"
+        style="white-space: nowrap;"
+    >
+        <div class="row">
+            <h1
+                id="top"
+                class="col-lg-2 col-1"
+                style="padding: 30px;"
+            >名刺一覧</h1>
+        </div>
+        <form
+            action="meishiList"
+            method="post"
+        >
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-5 col-8">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="search"
+                        name="searchText"
+                        value=""
+                        th:attr="value=( ${searchText}!=null ? ${searchText})"
+                    >
+                </div>
+                <span class="col-lg-4 col-2">
+                    <button
+                        class="btn btn-default btn-primary "
+                        type="submit"
+                        style="width: 100px;"
+                    >検索</button>
+                </span>
+            </div>
+        </form>
+        <div
+            class="row"
+            style="text-align: left;"
+        >
+            <div class="col-lg-1"></div>
+            <a
+                class="btn btn-default btn-primary col-3 col-lg-2"
+                href="BC_regist_picture"
+                role="button"
+                style="background-color: #ff7f50; border-color: #ff7f50; margin-left: 10px; width: 200px; margin: 10px;"
+            >名刺登録</a>
+            <span class="col-6"></span>
+        </div>
+        <nav>
+            <ul
+                class="pagination justify-content-end"
+                style="margin-right: 100px;"
+            >
+                <li
+                    class="page-item"
+                    th:attrappend="class= (${pageNumber}==1 ? ' disabled' : '')"
+                >
+                    <a
+                        class="page-link"
+                        th:attr="href=@{${url}(pageNumber=1)}+(${searchText==null} ? '' : '&searchText='+${searchText})"
+                    >&lt&lt;</a>
+                </li>
+                <li
+                    class="page-item"
+                    th:attrappend="class= (${pageNumber}==1 ? ' disabled' : '')"
+                >
+                    <a
+                        class="page-link"
+                        th:attr="href=@{/meishiList(pageNumber=${previousPageNumber})}+(${searchText==null} ? '' : '&searchText='+${searchText})"
+                    >&lt;</a>
+                </li>
+                <li
+                    class="page-item"
+                    th:each="i : ${#numbers.sequence(1, lastPageNumber)}"
+                    th:attrappend="class= (${pageNumber}==${i} ? ' disabled page' : '')"
+                >
+                    <a
+                        class="page-link"
+                        th:attr="href=@{meishiList(pageNumber=${i})}+(${searchText==null} ? '' : '&searchText='+${searchText})"
+                        th:text="${i}"
+                    ></a>
+                </li>
+                <li
+                    class="page-item"
+                    th:attrappend="class= (${pageNumber}==${lastPageNumber} ? ' disabled' : '')"
+                >
+                    <a
+                        class="page-link"
+                        th:attr="href=@{${url}(pageNumber=${nextPageNumber})}+(${searchText==null} ? '' : '&searchText='+${searchText})"
+                    >&gt;</a>
+                </li>
+                <li
+                    class="page-item"
+                    th:attrappend="class= (${pageNumber}==${lastPageNumber} ? ' disabled' : '')"
+                >
+                    <a
+                        class="page-link"
+                        th:attr="href=@{${url}(pageNumber=${lastPageNumber})}+(${searchText==null} ? '' : '&searchText='+${searchText})"
+                    >&gt&gt;</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="table-responsive">
+            <table
+                class="table"
+                align="center"
+                style="width: 80%;"
+            >
+                <thead>
+                    <tr>
+                        <th style="width: 1%">名前</th>
+                        <th style="width: 15%">会社名</th>
+                        <th style="width: 15%">名刺画像</th>
+                        <th style="width: 2%">名刺詳細</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="meishi : ${meishiList}">
+                        <td th:text="${meishi.name}"></td>
+                        <td th:text="${meishi.company}"></td>
+                        <td>
+                            <a th:href="${meishi.picturePath}">
+                                <IMG
+                                    src=""
+                                    th:attr="src= (${meishi.picturePath}==null ? '':@{${meishi.picturePath}}),width= (${meishi.picturePath}==null ? '':'154')"
+                                    width=""
+                                    height="95"
+                                >
+                            </a>
+                        </td>
+                        <td
+                            align="center"
+                            style="width: 120px;"
+                        >
+                            <a
+                                class="btn btn-default btn-primary "
+                                style="width: 60px;"
+                                href="meishiDetail"
+                                role="button"
+                            >詳細</a>
+                        </td>
+                    </tr>
+                <tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+
+    <!-- bootstrap , jQuery , Popper.js , Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+    ></script>
+</body>
+</html>

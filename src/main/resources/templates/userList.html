@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- Bootstrap -->
+<link
+	rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+>
+<title>ユーザ一覧</title>
+<script>
+	function confirmFunction1() {
+		//ret変数に確認ダイアログの結果を代入する。
+		ret = confirm("「井出 匡駿」\nこのユーザを削除してよろしいですか？");
+		//確認ダイアログの結果がOKの場合外部リンクを開く
+		if (ret == true) {
+			location.href = "user_delete_comp.html";
+		}
+	}
+</script>
+
+
+</head>
+<body>
+	<!-- ヘッダー開始 -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<button
+			type="button"
+			class="navbar-toggler"
+			data-toggle="collapse"
+			data-target="#navbarNavDropdown"
+			aria-controls="navbarNavDropdown"
+			aria-expanded="false"
+			aria-label="ナビゲーションの切替"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a
+			class="navbar-brand mb-0"
+			style="background-color: #505050; padding-left: 5px; padding-right: 5px;"
+			href="BC_list.html"
+		>
+			<img
+				src="Picture/header/BusinessCard.png"
+				width="30"
+				height="30"
+				class="d-inline-block align-top"
+				alt=""
+			>
+			名刺管理システム
+		</a>
+		<div
+			class="collapse navbar-collapse"
+			id="navbarNavDropdown"
+		>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a
+						class="nav-link"
+						href="BC_list.html"
+					>名刺一覧</a>
+				</li>
+				<li class="nav-item">
+					<a
+						class="nav-link"
+						href="user_list.html"
+					>ユーザ一覧</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item dropdown">
+					<a
+						href="#"
+						class="nav-link dropdown-toggle"
+						role="button"
+						data-toggle="dropdown"
+						id="navbarDropdownMenuLink"
+						aria-haspopup="true"
+						aria-expanded="false"
+					>ユーザ名</a>
+					<div
+						class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="navbarDropdownMenuLink"
+					>
+						<a
+							class="dropdown-item"
+							href="user_edit.html"
+						>
+							<img
+								src="Picture/header/mypage.png"
+								width="30"
+								height="30"
+								class="d-inline-block align-top"
+								alt=""
+							>
+							ユーザ編集
+						</a>
+						<a
+							class="dropdown-item"
+							href="logout.html"
+						>
+							<img
+								src="Picture/header/logout.png"
+								width="30"
+								height="30"
+								class="d-inline-block align-top"
+								alt=""
+							>
+							ログアウト
+						</a>
+					</div>
+					<!-- ./dropdown-menu -->
+				</li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</nav>
+	<!-- ヘッダー終了 -->
+	<div
+		class="container"
+		style="white-space: nowrap;"
+	>
+		<h1 style="margin-left: 80px; padding: 30px;">ユーザ一覧</h1>
+		<a
+			class="btn btn-default btn-primary "
+			href="user_regist.html"
+				role="button"
+			style="background-color: #ff7f50; border-color: #ff7f50; margin-left: 100px; width: 200px; margin-top: 10px;"
+		>ユーザ登録</a>
+		<nav aria-label="">
+			<ul
+				class="pagination justify-content-end"
+				style="margin-right: 100px;"
+			>
+				<li class="page-item disabled">
+					<a
+						class="page-link"
+						href="#"
+					>&lt&lt;</a>
+				</li>
+				<li class="page-item disabled">
+					<a
+						class="page-link"
+						href="#"
+					>&lt;</a>
+				</li>
+				<li class="page-item disabled">
+					<a
+						class="page-link"
+						href="#"
+					>
+						<b>1</b>
+					</a>
+				</li>
+				<li class="page-item">
+					<a
+						class="page-link"
+						href="#"
+					>2</a>
+				</li>
+				<li class="page-item">
+					<a
+						class="page-link"
+						href="#"
+					>3</a>
+				</li>
+				<li class="page-item">
+					<a
+						class="page-link"
+						href="#"
+					>&gt;</a>
+				</li>
+				<li class="page-item">
+					<a
+						class="page-link"
+						href="#"
+					>&gt&gt;</a>
+				</li>
+			</ul>
+		</nav>
+		<table
+			class="table"
+			align="center"
+		width: 80%;>
+			<thead>
+				<tr>
+					<th>名前</th>
+					<th>ログインID</th>
+					<th style="width: 70px">ユーザ編集</th>
+					<th style="width: 70px">ユーザ削除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td width="200px">井出 匡駿</td>
+					<td>ide</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+							onclick="confirmFunction1()"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">小滝 隆乃佑</td>
+					<td>kotaki</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">前田</td>
+					<td>maeda</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">前田</td>
+					<td>maeda</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">前田</td>
+					<td>maeda</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">前田</td>
+					<td>maeda</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">前田</td>
+					<td>maeda</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">前田</td>
+					<td>maeda</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">前田</td>
+					<td>maeda</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+				<tr>
+					<td width="100px">前田</td>
+					<td>maeda</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<a
+							class="btn btn-default btn-primary "
+							href="user_edit.html"
+							role="button"
+							style="width: 60px;"
+						>編集</a>
+					</td>
+					<td
+						align="center"
+						style="width: 120px;"
+					>
+						<button
+							class="btn btn-default btn-danger "
+							type="submit"
+							style="width: 60px;"
+						>削除</button>
+					</td>
+				</tr>
+			<tbody>
+		</table>
+	</div>
+</body>
+<!-- Optional JavaScript -->
+<!-- bootstrap , jQuery , Popper.js , Bootstrap JS -->
+<script src="js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"
+></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"
+></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+</html>
