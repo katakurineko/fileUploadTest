@@ -52,7 +52,7 @@ public class LoadPictureController {
       HttpServletRequest request, HttpServletResponse response)
       throws IOException {
     InputStream in = request.getServletContext()
-        .getResourceAsStream("hoge/Picture/"+filename);
+        .getResourceAsStream("/Picture/"+filename);
     response.setContentType(MediaType.IMAGE_JPEG_VALUE);
     IOUtils.copy(in, response.getOutputStream());
   }
