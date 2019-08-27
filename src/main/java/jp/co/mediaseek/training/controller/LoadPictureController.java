@@ -24,38 +24,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoadPictureController {
 
-  private final Path rootLocation;
-
-  public LoadPictureController() {
-    this.rootLocation = Paths.get("src\\main\\resources\\static\\Picture");
-  }
+//  private final Path rootLocation;
+//
+//  public LoadPictureController() {
+//    this.rootLocation = Paths.get("src\\main\\resources\\static\\Picture");
+//  }
+//
+//  @GetMapping("/Picture/{filename:.+}")
+//  @ResponseBody
+//  public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+//
+//    System.out.println("debug!!");
+//
+//    Path file = rootLocation.resolve(filename);
+//    Resource resource = null;
+//    try {
+//      resource = new UrlResource(file.toUri());
+//    } catch (MalformedURLException e) {
+//      e.printStackTrace();
+//    }
+//    return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+//        "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
+//  }
 
   @GetMapping("/Picture/{filename:.+}")
-  @ResponseBody
-  public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-
-    System.out.println("debug!!");
-
-    Path file = rootLocation.resolve(filename);
-    Resource resource = null;
-    try {
-      resource = new UrlResource(file.toUri());
-    } catch (MalformedURLException e) {
-      e.printStackTrace();
-    }
-    return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-        "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
-  }
-
-  @RequestMapping(value = "/imageTest", method = RequestMethod.GET)
-  public void getImageAsByteArray(HttpServletRequest request, HttpServletResponse response)
+  public void getImageAsByteArray(@PathVariable String filename,
+      HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-    System.out.println("test");
     InputStream in = request.getServletContext()
-        .getResourceAsStream("sample.jpg");
+        .getResourceAsStream("hoge/Picture/"+filename);
     response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-    System.out.println(response);
-    System.out.println(in);
     IOUtils.copy(in, response.getOutputStream());
   }
 
