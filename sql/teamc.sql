@@ -79,7 +79,7 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 INSERT INTO `public`.`user` (`user_name`, `login_id`, `password_hash`, `password_salt`, `role_id`, `version`) VALUES ('kanri', 'kanri', '$2a$10$n15y3/zuVQVH4jseZveMQuYHhw3eI3U6iWldkLRQihYkvxTONHCN6', 'salt', '1', '1');
 INSERT INTO `public`.`user` (`user_name`, `login_id`, `password_hash`, `password_salt`, `role_id`, `version`) VALUES ('ippan', 'ippan', '$2a$10$n15y3/zuVQVH4jseZveMQuYHhw3eI3U6iWldkLRQihYkvxTONHCN6', 'salt', '2', '1');
 
-INSERT INTO `public`.`meishi_info` (`name`, `company`, `user_id`, `version`) VALUES ('test1', 'Test1', '1', '1');
+INSERT INTO `public`.`meishi_info` (`name`, `company`, `user_id`, `version`,`picture_path`) VALUES ('test1', 'Test1', '1', '1','Picture/sample.jpg');
 INSERT INTO `public`.`meishi_info` (`name`, `company`, `user_id`, `version`) VALUES ('test2', 'Test2', '2', '1');
 INSERT INTO `public`.`meishi_info` (`name`, `company`, `user_id`, `version`) VALUES ('test3', 'Test3', '1', '1');
 INSERT INTO `public`.`meishi_info` (`name`, `company`, `user_id`, `version`) VALUES ('test4', 'Test4', '2', '1');
