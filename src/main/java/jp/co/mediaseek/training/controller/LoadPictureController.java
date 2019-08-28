@@ -24,37 +24,39 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoadPictureController {
 
-//  private final Path rootLocation;
-//
-//  public LoadPictureController() {
-//    this.rootLocation = Paths.get("src\\main\\resources\\static\\Picture");
-//  }
-//
-//  @GetMapping("/Picture/{filename:.+}")
-//  @ResponseBody
-//  public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-//
-//    System.out.println("debug!!");
-//
-//    Path file = rootLocation.resolve(filename);
-//    Resource resource = null;
-//    try {
-//      resource = new UrlResource(file.toUri());
-//    } catch (MalformedURLException e) {
-//      e.printStackTrace();
-//    }
-//    return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-//        "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
-//  }
+  // private final Path rootLocation;
+  //
+  // public LoadPictureController() {
+  // this.rootLocation = Paths.get("src\\main\\resources\\static\\Picture");
+  // }
+  //
+  // @GetMapping("/Picture/{filename:.+}")
+  // @ResponseBody
+  // public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+  //
+  // System.out.println("debug!!");
+  //
+  // Path file = rootLocation.resolve(filename);
+  // Resource resource = null;
+  // try {
+  // resource = new UrlResource(file.toUri());
+  // } catch (MalformedURLException e) {
+  // e.printStackTrace();
+  // }
+  // return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+  // "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
+  // }
 
   @GetMapping("/Picture/{filename:.+}")
-  public void getImageAsByteArray(@PathVariable String filename,
-      HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
-    InputStream in = request.getServletContext()
-        .getResourceAsStream("/Picture/"+filename);
+  public void getImageAsByteArray(@PathVariable String filename, HttpServletRequest request,
+      HttpServletResponse response) throws IOException {
+    InputStream in = request.getServletContext().getResourceAsStream("/Picture/" + filename);
+    // 出力した画像を右クリック等で保存する際の画像の形式を決める
+    // TODO : 保存されている画像の形式に合わせるような処理を行う
     response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+
     IOUtils.copy(in, response.getOutputStream());
   }
+
 
 }
