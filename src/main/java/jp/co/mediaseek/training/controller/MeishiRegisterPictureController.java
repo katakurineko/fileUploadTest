@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import jp.co.mediaseek.training.exception.StorageException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public class MeishiRegisterPictureController {
    * @return
    */
   @PostMapping("/meishiRegisterPicture")
-  public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+  public String handleFileUpload(@RequestParam("file") MultipartFile file,Model model) {
 
     /*
      * ファイルのパスを正規化する。 https://www.baeldung.com/java-nio-2-path などを参照。
@@ -48,6 +49,7 @@ public class MeishiRegisterPictureController {
           && !file.getContentType().equals("image/jpeg")) {
         // アップロードされたファイルのMIMEタイプが、jpgもしくはpngでなかった場合の処理
         // TODO : アップロードされたファイルがjpgもしくはpngでなかった場合の処理。
+        model.addAttribute("errorMessage", "ファイルの形式はjpgかpngのみ登録可能です");
         return "meishiRegisterPicture";
       } else if (1048576 <= file.getSize()) {
         //TODO : アップロードされたファイルが10MBを超えた場合の処理
