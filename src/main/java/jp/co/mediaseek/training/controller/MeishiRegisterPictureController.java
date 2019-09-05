@@ -73,8 +73,10 @@ public class MeishiRegisterPictureController {
         model.addAttribute("errorMessageList", errorMessageList);
         return "meishiRegisterPicture";
       }
+      
+      //TODO : データベース接続処理
 
-      // ファイルのコピーを行う。なお、同じ名前のファイルがあった場合は上書きする。
+      // サーバーへファイルのコピーを作成。なお、同じ名前のファイルがあった場合は上書きする。
       try (InputStream inputStream = file.getInputStream()) {
         Files.copy(inputStream, rootLocation.resolve(filename),
             StandardCopyOption.REPLACE_EXISTING);
