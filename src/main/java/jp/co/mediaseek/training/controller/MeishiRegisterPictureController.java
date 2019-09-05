@@ -45,9 +45,12 @@ public class MeishiRegisterPictureController {
         // TODO : アップロードされたファイルが空だった場合の処理
         return "meishiRegisterPicture";
       } else if (!file.getContentType().equals("image/png")
-          || !file.getContentType().equals("image/jpeg")) {
+          && !file.getContentType().equals("image/jpeg")) {
         // アップロードされたファイルのMIMEタイプが、jpgもしくはpngでなかった場合の処理
         // TODO : アップロードされたファイルがjpgもしくはpngでなかった場合の処理。
+        return "meishiRegisterPicture";
+      } else if (1048576 <= file.getSize()) {
+        //TODO : アップロードされたファイルが10MBを超えた場合の処理
         return "meishiRegisterPicture";
       }
       try (InputStream inputStream = file.getInputStream()) {
