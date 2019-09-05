@@ -43,16 +43,17 @@ public class MeishiRegisterPictureController {
 
     try {
       if (file.isEmpty()) {
-        // TODO : アップロードされたファイルが空だった場合の処理
+        //アップロードされたファイルが空だった場合の処理
+        model.addAttribute("errorMessage", "ファイルが存在しません。");
         return "meishiRegisterPicture";
       } else if (!file.getContentType().equals("image/png")
           && !file.getContentType().equals("image/jpeg")) {
-        // アップロードされたファイルのMIMEタイプが、jpgもしくはpngでなかった場合の処理
-        // TODO : アップロードされたファイルがjpgもしくはpngでなかった場合の処理。
+        //アップロードされたファイルのMIMEタイプが、jpgもしくはpngでなかった場合の処理
         model.addAttribute("errorMessage", "ファイルの形式はjpgかpngのみ登録可能です");
         return "meishiRegisterPicture";
       } else if (1048576 <= file.getSize()) {
-        //TODO : アップロードされたファイルが10MBを超えた場合の処理
+        //アップロードされたファイルが10MBを超えた場合の処理
+        model.addAttribute("errorMessage", "ファイルのサイズは10MB以下であるものが登録可能です。");
         return "meishiRegisterPicture";
       }
       
