@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import jp.co.mediaseek.training.exception.StorageException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,7 @@ public class MeishiRegisterPictureController {
    * @return
    */
   @PostMapping("/meishiRegisterPicture")
-  public String handleFileUpload(@RequestParam("file") MultipartFile file,Model model) {
+  public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) {
 
     /*
      * ファイルのパスを正規化する。 https://www.baeldung.com/java-nio-2-path などを参照。
@@ -42,27 +44,42 @@ public class MeishiRegisterPictureController {
     Path rootLocation = Paths.get("src/main/resources/static/Picture");
 
     try {
+
+      // エラーが存在するかどうかを判定するための変数
+      boolean existsError = false;
+      
+      //エラー文のリスト
+      List<String> errorMessageList = new ArrayList<>();
+
       if (file.isEmpty()) {
-        //アップロードされたファイルが空だった場合の処理
-        model.addAttribute("errorMessage", "ファイルが存在しません。");
-        return "meishiRegisterPicture";
-      } else if (!file.getContentType().equals("image/png")
+        // アップロードされたファイルが空だった場合の処理
+        errorMessageList.add("ファイルが存在しません。");
+        existsError = true;
+      }
+      if (!file.getContentType().equals("image/png")
           && !file.getContentType().equals("image/jpeg")) {
-        //アップロードされたファイルのMIMEタイプが、jpgもしくはpngでなかった場合の処理
-        model.addAttribute("errorMessage", "ファイルの形式はjpgかpngのみ登録可能です");
-        return "meishiRegisterPicture";
-      } else if (1048576 <= file.getSize()) {
-        //アップロードされたファイルが10MBを超えた場合の処理
-        model.addAttribute("errorMessage", "ファイルのサイズは10MB以下であるものが登録可能です。");
+        // アップロードされたファイルのMIMEタイプが、jpgもしくはpngでなかった場合の処理
+        errorMessageList.add("ファイルの形式はjpgかpngのみ登録可能です");
+        existsError = true;
+      }
+      if (1048576 <= file.getSize()) {
+        // アップロードされたファイルが10MBを超えた場合の処理
+        errorMessageList.add("ファイルのサイズは10MB以下であるものが登録可能です。");
+        existsError = true;
+      }
+
+      if (existsError) {
+        //エラーが存在していた場合は、名刺画像登録画面に遷移
+        model.addAttribute("errorMessageList", errorMessageList);
         return "meishiRegisterPicture";
       }
-      
-      //ファイルのコピーを行う。なお、同じ名前のファイルがあった場合は上書きする。
+
+      // ファイルのコピーを行う。なお、同じ名前のファイルがあった場合は上書きする。
       try (InputStream inputStream = file.getInputStream()) {
         Files.copy(inputStream, rootLocation.resolve(filename),
             StandardCopyOption.REPLACE_EXISTING);
       }
-      
+
     } catch (IOException e) {
       throw new StorageException("Failed to store file " + filename, e);
     }
