@@ -40,7 +40,7 @@ public class MeishiRegisterPictureController {
 
     //保存先をrootLocationに代入。
     //TODO : 保存先のパスはapplication.propertiesなどの外部ファイルから読み込む
-    Path rootLocation = Paths.get("src/main/webapp/Picture");
+    Path rootLocation = Paths.get("src/main/resources/static/Picture");
 
     try {
       if (file.isEmpty()) {
