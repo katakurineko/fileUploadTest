@@ -53,10 +53,13 @@ public class MeishiRegisterPictureController {
         //TODO : アップロードされたファイルが10MBを超えた場合の処理
         return "meishiRegisterPicture";
       }
+      
+      //ファイルのコピーを行う。なお、同じ名前のファイルがあった場合は上書きする。
       try (InputStream inputStream = file.getInputStream()) {
         Files.copy(inputStream, rootLocation.resolve(filename),
             StandardCopyOption.REPLACE_EXISTING);
       }
+      
     } catch (IOException e) {
       throw new StorageException("Failed to store file " + filename, e);
     }
