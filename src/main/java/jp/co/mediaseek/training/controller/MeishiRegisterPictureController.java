@@ -25,31 +25,30 @@ public class MeishiRegisterPictureController {
   /**
    * <a href="https://spring.io/guides/gs/uploading-files/">Spring入門コンテンツ</a>を参考に作成.
    * 
-   * @param file
+   * @param file システム実行中では、MultipartFileを実装したStandardMultipartFileインスタンスが渡される想定.
    * @return
    */
   @PostMapping("/meishiRegisterPicture")
   public String handleFileUpload(@RequestParam("file") MultipartFile file) {
 
     /*
-     * ファイルのパスを正規化する。
-     * https://www.baeldung.com/java-nio-2-path
-     * などを参照。
+     * ファイルのパスを正規化する。 https://www.baeldung.com/java-nio-2-path などを参照。
      */
     String filename = StringUtils.cleanPath(file.getOriginalFilename());
 
-    //保存先をrootLocationに代入。
-    //TODO : 保存先のパスはapplication.propertiesなどの外部ファイルから読み込む
+    // 保存先をrootLocationに代入。
+    // TODO : 保存先のパスはapplication.propertiesなどの外部ファイルから読み込む
     Path rootLocation = Paths.get("src/main/resources/static/Picture");
 
     try {
       if (file.isEmpty()) {
-        throw new StorageException("Failed to store empty file " + filename);
-      }
-      if (filename.contains("..")) {
-        // This is a security check
-        throw new StorageException(
-            "Cannot store file with relative path outside current directory " + filename);
+        // TODO : アップロードされたファイルが空だった場合の処理
+        return "meishiRegisterPicture";
+      } else if (!file.getContentType().equals("image/png")
+          || !file.getContentType().equals("image/jpeg")) {
+        // アップロードされたファイルのMIMEタイプが、jpgもしくはpngでなかった場合の処理
+        // TODO : アップロードされたファイルがjpgもしくはpngでなかった場合の処理。
+        return "meishiRegisterPicture";
       }
       try (InputStream inputStream = file.getInputStream()) {
         Files.copy(inputStream, rootLocation.resolve(filename),
