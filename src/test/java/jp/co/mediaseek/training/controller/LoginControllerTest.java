@@ -136,7 +136,7 @@ public class LoginControllerTest {
 
     String actual = sut.post("kanri", "pass", model);
 
-    assertEquals("meishiList", actual);
+    assertEquals("redirect:meishiList", actual);
 
     assertEquals(1, spyHttpSession.getAttribute("roleId"));
     assertEquals(1, spyHttpSession.getAttribute("userId"));

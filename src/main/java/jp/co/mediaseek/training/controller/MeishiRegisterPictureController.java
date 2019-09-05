@@ -22,14 +22,25 @@ public class MeishiRegisterPictureController {
     return "meishiRegisterPicture";
   }
 
+  /**
+   * <a href="https://spring.io/guides/gs/uploading-files/">Spring入門コンテンツ</a>を参考に作成.
+   * 
+   * @param file
+   * @return
+   */
   @PostMapping("/meishiRegisterPicture")
   public String handleFileUpload(@RequestParam("file") MultipartFile file) {
 
+    /*
+     * ファイルのパスを正規化する。
+     * https://www.baeldung.com/java-nio-2-path
+     * などを参照。
+     */
     String filename = StringUtils.cleanPath(file.getOriginalFilename());
-    System.out.println("filename:" + filename);
 
+    //保存先をrootLocationに代入。
+    //TODO : 保存先のパスはapplication.propertiesなどの外部ファイルから読み込む
     Path rootLocation = Paths.get("src/main/webapp/Picture");
-    System.out.println(rootLocation);
 
     try {
       if (file.isEmpty()) {
